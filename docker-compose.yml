@@ -1,0 +1,36 @@
+version: '3.3'
+
+services:
+  mysql-server:
+    image: kristogodari/wordpress:wordpress-mysql
+    build:
+      context: ./mysql-server
+    volumes:
+      - ./backup:/backup/
+    environment:
+      MYSQL_ROOT_PASSWORD: bkaNZLjH
+    container_name: wordpress_mysql
+
+  web-server:
+    image: kristogodari/wordpress:wordpress-webserver
+    build: ./web-server
+    ports:
+      - "80:80"
+    volumes:
+      - ./web-server/src/:/var/www/html/
+    depends_on:
+      - mysql-server
+    container_name: wordpress_webserver
+
+  mysql-backup:
+    image: kristogodari/wordpress:wordpress-myql-backup
+    build: ./mysql-backup
+    volumes:
+      - ./backup:/workspace/
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - mysql-server
+    container_name: wordpress_mysql_backup
+
+
+
