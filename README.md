@@ -1,4 +1,4 @@
-# Wordpress 5.1.1 + Docker
+# Wordpress 5.1.1 + Docker + Automated backups
 
 
 ## Requirements
@@ -9,7 +9,7 @@ Follow this guide to install docker: https://docs.docker.com/install/
 
 ## Installation
 1. Clone the project
-2. Move to project directory `cd wordptress-docker`
+2. Move to project directory `cd wordpress-docker`
 3. Start containers: `./tools/stop-and-start.sh `
 4. Verify containers are up with `docker ps`
 5. Open browser at http://localhost/ for the homepage
